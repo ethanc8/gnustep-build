@@ -47,8 +47,11 @@ generateForOS() {
 
     versions=('2021may' '2023jan' 'stable' 'trunk')
 
+    printf "\n%s" "| $name |" >> README.md
+
     for version in "${versions[@]}"; do
         generate "$name" "$dockerTag" "$version"
+        printf "%s" " [![$name-$version build status](https://github.com/ethanc8/gnustep-build/actions/workflows/$name-$version.yml/badge.svg)](https://github.com/ethanc8/gnustep-build/actions/workflows/$name-$version.yml) |" >> README.md
     done
 }
 
