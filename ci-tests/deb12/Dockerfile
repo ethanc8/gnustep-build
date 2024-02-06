@@ -10,4 +10,4 @@ RUN git clone https://github.com/ethanc8/gnustep-build
 # RUN chmod +x *.sh
 RUN /bin/bash -c "gnustep-build/generic/build.sh"
 
-CMD [ "/bin/bash", "-c", "export PS1=allow_bash_to_run; source ~/.bashrc; ./demo.sh" ]
+CMD [ "/bin/bash", "-c", "export PS1=allow_bash_to_run; source ~/.bashrc; ./gnustep-build/demo.sh" ]
