@@ -10,6 +10,14 @@ To install GNUstep from source, please `cd` to the directory in which you want t
 wget -qO- https://raw.githubusercontent.com/ethanc8/gnustep-build/master/generic/build.sh | bash
 ```
 
+If you want to customize the installation paramaters (for example, to install an older version of the libraries, to install from git `master`, or to disable the applications), please do the following:
+
+```bash
+git clone https://github.com/ethanc8/gnustep-build
+nano generic/build.sh # Or your favorite text editor
+./generic/build.sh
+```
+
 ## TODO
 
 * [ ] Test on more Debian derivatives
