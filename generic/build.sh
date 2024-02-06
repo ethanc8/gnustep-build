@@ -111,10 +111,7 @@ echo -e "\n\n${GREEN}Installing dependencies...${NC}"
 sudo apt update
 # This was from the Ubuntu 22.04
 
-# sudo apt -y install clang-14 build-essential wget git subversion cmake libffi-dev libxml2-dev \
-# libgnutls28-dev libicu-dev libblocksruntime-dev libkqueue-dev libpthread-workqueue-dev autoconf libtool \
-# libjpeg-dev libtiff-dev libffi-dev libcairo-dev libx11-dev libxt-dev libxft-dev libxrandr-dev \
-# libicu-dev libicu70
+apt info clang-14
 
 # This was from the Mobian 12
 DEBIAN_FRONTEND=noninteractive sudo apt -y install clang-14 liblldb-14 lld-14 build-essential git subversion \
