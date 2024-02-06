@@ -155,9 +155,9 @@ echo -e "\n\n${GREEN}Installing dependencies...${NC}"
 if $OS_IS_DEBIAN_DERIVATIVE; then
   # If we're in a VM without tzdata, then install tzdata.
   if ! debianPackageIsInstalled tzdata; then
-    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC sudo apt -y install tzdata
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC sudo -E apt -y install tzdata
   fi
-  DEBIAN_FRONTEND=noninteractive sudo apt -y install wget curl software-properties-common
+  DEBIAN_FRONTEND=noninteractive sudo -E apt -y install wget curl software-properties-common
   if $HAS_CLANG_14_IN_REPO; then
     :
   else
@@ -169,7 +169,7 @@ if $OS_IS_DEBIAN_DERIVATIVE; then
   sudo apt update
   sudo add-apt-repository universe
 
-  DEBIAN_FRONTEND=noninteractive sudo apt -y install clang-14 liblldb-14 lld-14 build-essential git subversion \
+  DEBIAN_FRONTEND=noninteractive sudo -E apt -y install clang-14 liblldb-14 lld-14 build-essential git subversion \
   libc6 libc6-dev \
   libxml2 libxml2-dev \
   libffi8 libffi-dev \
