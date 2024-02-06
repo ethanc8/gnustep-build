@@ -1,0 +1,14 @@
+on:
+  [push]
+name: deb12 - GNUstep TRUNK
+jobs:
+  testbuild:
+    name: Building GNUstep
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the build script repository
+        uses: actions/checkout@master
+      - name: Execute test script
+        run: |
+          docker build -t gnustep-build-ci-deb12-TRUNK ci-tests/deb12-TRUNK/.
+          docker run gnustep-build-ci-deb12-TRUNK

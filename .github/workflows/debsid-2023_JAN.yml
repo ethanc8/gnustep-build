@@ -1,0 +1,14 @@
+on:
+  [push]
+name: debsid - GNUstep 2023_JAN
+jobs:
+  testbuild:
+    name: Building GNUstep
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the build script repository
+        uses: actions/checkout@master
+      - name: Execute test script
+        run: |
+          docker build -t gnustep-build-ci-debsid-2023_JAN ci-tests/debsid-2023_JAN/.
+          docker run gnustep-build-ci-debsid-2023_JAN
