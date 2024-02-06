@@ -6,28 +6,28 @@ set -x
 # Set version numbers
 # Possible values: TRUNK, STABLE, 2023_JAN, 2021_MAY, CUSTOM
 # If you specify CUSTOM, you must specify all other variables
-if [[ -z "$GNUSTEP_BUILD_VERSION" ]]; then
+if [[ -n "$GNUSTEP_BUILD_VERSION" ]]; then
   VERSION="$GNUSTEP_BUILD_VERSION"
 else
   VERSION="STABLE"
 fi
 
 # Set to true to also build and install apps
-if [[ -z "$GNUSTEP_BUILD_APPS" ]]; then
+if [[ -n "$GNUSTEP_BUILD_APPS" ]]; then
   APPS="$GNUSTEP_BUILD_APPS"
 else
   APPS=true
 fi
 
 # Set to true to also build and install themes
-if [[ -z "$GNUSTEP_BUILD_THEMES" ]]; then
+if [[ -n "$GNUSTEP_BUILD_THEMES" ]]; then
   THEMES="$GNUSTEP_BUILD_THEMES"
 else
   THEMES=true
 fi
 
 # Set to true to pause after each build to verify successful build and installation
-if [[ -z "$GNUSTEP_BUILD_PROMPT" ]]; then
+if [[ -n "$GNUSTEP_BUILD_PROMPT" ]]; then
   PROMPT="$GNUSTEP_BUILD_PROMPT"
 else
   PROMPT=false
