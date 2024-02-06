@@ -10,5 +10,6 @@ jobs:
         uses: actions/checkout@master
       - name: Execute test script
         run: |
-          cd debian-10-clang-8.0
-          sh ./test.sh
+          docker build -t gnustep-build-ci-deb12 ci-tests/deb12/.
+          docker run gnustep-build-ci-deb12
+
