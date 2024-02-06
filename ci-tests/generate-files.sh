@@ -59,11 +59,13 @@ clean
 
 generateForOS debsid 'debian:sid'
 generateForOS debtesting 'debian:testing'
+# ADD NEW CODENAMES HERE
 generateForOS deb12 'debian:12'
 generateForOS deb11 'debian:11'
 generateForOS deb10 'debian:10'
 
 generateForOS ubudevel 'ubuntu:devel'
+# ADD NEW CODENAMES HERE
 generateForOS ubu2310 'ubuntu:mantic'
 generateForOS ubu2204 'ubuntu:focal'
 generateForOS ubu2004 'ubuntu:jammy'

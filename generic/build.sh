@@ -101,70 +101,109 @@ function showPrompt()
 GREEN=`tput setaf 2`
 NC=`tput sgr0` # No Color
 
+# Determine OS
+if [[ -f "/etc/debian_version" ]]; then
+  OS_IS_DEBIAN_DERIVATIVE=true
+else
+  OS_IS_DEBIAN_DERIVATIVE=false
+  echo "WARNING: You are not on a Debian derivative!"
+fi
 
+if $OS_IS_DEBIAN_DERIVATIVE; then
+  DEBIAN_UBUNTU_CODENAME=$( \
+   (grep UBUNTU_CODENAME /etc/os-release || \
+    grep DISTRIB_CODENAME /etc/upstream-release/lsb-release || \
+    grep DISTRIB_CODENAME /etc/lsb-release) 2>/dev/null | \
+   cut -d'=' -f2 )
+  # ADD NEW CODENAMES HERE
+  # Currently has Ubuntu 16.04~24.04 and Debian Jessie (15.04) to Trixie (25.??), plus Testing and Sid
+  if [[ ! "$DEBIAN_UBUNTU_CODENAME" =~ ^(xenial|yakkety|zesty|artful|bionic|cosmic|disco|eoan|focal|groovy|hirsute|impish|jammy|kinetic|lunar|mantic|noble|jessie|stretch|buster|bullseye|bookworm|trixie|forky|sid)$ ]]; then
+    DEBIAN_UBUNTU_CODENAME=$(cut -d'/' -f1 < /etc/debian_version)
+  fi
+  echo "It looks like we're on a Debian derivative with codename $DEBIAN_UBUNTU_CODENAME."
+
+  # ADD NEW CODENAMES HERE (UBUNTU ONLY)
+  if [[ ! "$DEBIAN_UBUNTU_CODENAME" =~ ^(xenial|yakkety|zesty|artful|bionic|cosmic|disco|eoan|focal|groovy|hirsute|impish|jammy|kinetic|lunar|mantic|noble)$ ]]; then
+    OS_IS_UBUNTU_DERIVATIVE=true
+  else
+    OS_IS_UBUNTU_DERIVATIVE=false
+  fi
+
+  # ADD NEW CODENAMES HERE
+  # Currently has Ubuntu 22.04~24.04 and Debian Jessie (15.04) to Trixie (25.??), plus Testing and Sid
+  if [[ "$DEBIAN_UBUNTU_CODENAME" =~ ^(jammy|kinetic|lunar|mantic|noble|bookworm|trixie|forky|sid)$ ]]; then
+    HAS_CLANG_14_IN_REPO=true
+  else
+    HAS_CLANG_14_IN_REPO=false
+  fi
+fi
 
 # Install Requirements
-sudo apt update
-
 echo -e "\n\n${GREEN}Installing dependencies...${NC}"
 
-sudo apt update
+if $OS_IS_DEBIAN_DERIVATIVE; then
+  DEBIAN_FRONTEND=noninteractive sudo apt -y install wget curl software-properties-common
+  if $HAS_CLANG_14_IN_REPO; then
+    :
+  else
+    wget https://apt.llvm.org/llvm.sh
+    chmod +x llvm.sh
+    sudo ./llvm.sh
+  fi
+
+  sudo apt update
   sudo add-apt-repository universe
 
-# This was from the Mobian 12
-DEBIAN_FRONTEND=noninteractive sudo apt -y install clang-14 liblldb-14 lld-14 build-essential git subversion \
-libc6 libc6-dev \
-libxml2 libxml2-dev \
-libffi8 libffi-dev \
-libicu-dev icu-devtools \
-libuuid1 uuid-dev uuid-runtime \
-libsctp1 libsctp-dev lksctp-tools \
-libavahi-core7 libavahi-core-dev \
-libavahi-client3 libavahi-client-dev \
-libavahi-common3 libavahi-common-dev libavahi-common-data \
-libgcrypt20 libgcrypt20-dev \
-libbsd0 libbsd-dev \
-util-linux-locales \
-locales-all \
-libjpeg-dev \
-libtiff-dev \
-libcups2-dev \
-libfreetype6-dev \
-libcairo2-dev \
-libxt-dev \
-libgl1-mesa-dev \
-libpcap-dev \
-libc-dev libc++-dev libc++1 \
-python3-dev swig \
-libedit-dev \
-binfmt-support libtinfo-dev \
-bison flex m4 wget \
-libicns1 libicns-dev \
-libxslt1.1 libxslt1-dev \
-libxft2 libxft-dev \
-libflite1 flite1-dev \
-libxmu6 libxpm4 wmaker-common \
-libgnutls30 libgnutls28-dev \
-libpng-dev libpng16-16 \
-default-libmysqlclient-dev \
-libpq-dev \
-libgif7 libgif-dev libwings3 libwings-dev \
-libwraster-dev libwutil5 \
-libcups2-dev \
-xorg \
-libfreetype6 libfreetype6-dev \
-libpango1.0-dev \
-libcairo2-dev \
-libxt-dev libssl-dev \
-libasound2-dev libjack-dev libjack0 libportaudio2 \
-libportaudiocpp0 portaudio19-dev \
-cmake libxrandr-dev libcurl4-gnutls-dev libcurl4
+  DEBIAN_FRONTEND=noninteractive sudo apt -y install clang-14 liblldb-14 lld-14 build-essential git subversion \
+  libc6 libc6-dev \
+  libxml2 libxml2-dev \
+  libffi8 libffi-dev \
+  libicu-dev icu-devtools \
+  libuuid1 uuid-dev uuid-runtime \
+  libsctp1 libsctp-dev lksctp-tools \
+  libavahi-core7 libavahi-core-dev \
+  libavahi-client3 libavahi-client-dev \
+  libavahi-common3 libavahi-common-dev libavahi-common-data \
+  libgcrypt20 libgcrypt20-dev \
+  libbsd0 libbsd-dev \
+  util-linux-locales \
+  locales-all \
+  libjpeg-dev \
+  libtiff-dev \
+  libcups2-dev \
+  libfreetype6-dev \
+  libcairo2-dev \
+  libxt-dev \
+  libgl1-mesa-dev \
+  libpcap-dev \
+  libc-dev libc++-dev libc++1 \
+  python3-dev swig \
+  libedit-dev \
+  binfmt-support libtinfo-dev \
+  bison flex m4 wget \
+  libicns1 libicns-dev \
+  libxslt1.1 libxslt1-dev \
+  libxft2 libxft-dev \
+  libflite1 flite1-dev \
+  libxmu6 libxpm4 wmaker-common \
+  libgnutls30 libgnutls28-dev \
+  libpng-dev libpng16-16 \
+  default-libmysqlclient-dev \
+  libpq-dev \
+  libgif7 libgif-dev libwings3 libwings-dev \
+  libwraster-dev libwutil5 \
+  libcups2-dev \
+  xorg \
+  libfreetype6 libfreetype6-dev \
+  libpango1.0-dev \
+  libcairo2-dev \
+  libxt-dev libssl-dev \
+  libasound2-dev libjack-dev libjack0 libportaudio2 \
+  libportaudiocpp0 portaudio19-dev \
+  cmake libxrandr-dev libcurl4-gnutls-dev libcurl4
 
-# readline-common libreadline7 libreadline-dev cmake-curses-gui
-
-if [ "$APPS" = true ] ; then
-  sudo apt -y install curl
-fi
+  # readline-common libreadline7 libreadline-dev cmake-curses-gui
+fi # if $OS_IS_DEBIAN_DERIVATIVE
 
 # Create build directory
 mkdir GNUstep-build
