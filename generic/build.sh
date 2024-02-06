@@ -109,6 +109,16 @@ else
   echo "WARNING: You are not on a Debian derivative!"
 fi
 
+debianPackageIsInstalled() {
+  pkg=$1
+  status="$(dpkg-query -W --showformat='${db:Status-Status}' "$pkg" 2>&1)"
+  if [ ! $? = 0 ] || [ ! "$status" = installed ]; then
+    return 1 # false
+  else
+    return 0 # true
+  fi
+}
+
 if $OS_IS_DEBIAN_DERIVATIVE; then
   DEBIAN_UBUNTU_CODENAME=$( \
    (grep UBUNTU_CODENAME /etc/os-release || \
@@ -143,6 +153,10 @@ fi
 echo -e "\n\n${GREEN}Installing dependencies...${NC}"
 
 if $OS_IS_DEBIAN_DERIVATIVE; then
+  # If we're in a VM without tzdata, then install tzdata.
+  if ! debianPackageIsInstalled tzdata; then
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC sudo apt -y install tzdata
+  fi
   DEBIAN_FRONTEND=noninteractive sudo apt -y install wget curl software-properties-common
   if $HAS_CLANG_14_IN_REPO; then
     :
