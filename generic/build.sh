@@ -113,7 +113,8 @@ if $OS_IS_DEBIAN_DERIVATIVE; then
   DEBIAN_UBUNTU_CODENAME=$( \
    (grep UBUNTU_CODENAME /etc/os-release || \
     grep DISTRIB_CODENAME /etc/upstream-release/lsb-release || \
-    grep DISTRIB_CODENAME /etc/lsb-release) 2>/dev/null | \
+    grep DISTRIB_CODENAME /etc/lsb-release || \
+    grep VERSION_CODENAME /etc/os-release) 2>/dev/null | \
    cut -d'=' -f2 )
   # ADD NEW CODENAMES HERE
   # Currently has Ubuntu 16.04~24.04 and Debian Jessie (15.04) to Trixie (25.??), plus Testing and Sid
