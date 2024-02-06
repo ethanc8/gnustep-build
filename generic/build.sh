@@ -112,7 +112,6 @@ libavahi-core7 libavahi-core-dev \
 libavahi-client3 libavahi-client-dev \
 libavahi-common3 libavahi-common-dev libavahi-common-data \
 libgcrypt20 libgcrypt20-dev \
-libtiff5 libtiff5-dev \
 libbsd0 libbsd-dev \
 util-linux-locales \
 locales-all \
