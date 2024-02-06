@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
 # gnustep-build
 
 This repository contains scripts for building the latest GNUstep from source under your favorite distributions.  Tested features include blocks and ARC.
