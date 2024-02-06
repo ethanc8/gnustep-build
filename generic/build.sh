@@ -18,7 +18,7 @@ PROMPT=false
 
 if [[ $VERSION = "STABLE" ]]; then
   LIBDISPATCH_VERSION=swift-5.9.2-RELEASE
-  LIBOBJC2_VERSION=master # v2.2 once the release is finished
+  LIBOBJC2_VERSION=v2.2
   GSMAKE_VERSION=make-2_9_1
   GSBASE_VERSION=base-1_29_0
   GSCOREBASE_VERSION=master
