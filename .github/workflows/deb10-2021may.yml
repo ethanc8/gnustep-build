@@ -1,0 +1,14 @@
+on:
+  [push]
+name: deb10 - GNUstep 2021may
+jobs:
+  testbuild:
+    name: Building GNUstep
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the build script repository
+        uses: actions/checkout@master
+      - name: Execute test script
+        run: |
+          docker build -t gnustep-build-ci-deb10-2021may ci-tests/deb10-2021may/.
+          docker run gnustep-build-ci-deb10-2021may

@@ -1,0 +1,14 @@
+on:
+  [push]
+name: debtesting - GNUstep 2023jan
+jobs:
+  testbuild:
+    name: Building GNUstep
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the build script repository
+        uses: actions/checkout@master
+      - name: Execute test script
+        run: |
+          docker build -t gnustep-build-ci-debtesting-2023jan ci-tests/debtesting-2023jan/.
+          docker run gnustep-build-ci-debtesting-2023jan
