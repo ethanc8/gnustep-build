@@ -109,9 +109,7 @@ sudo apt update
 echo -e "\n\n${GREEN}Installing dependencies...${NC}"
 
 sudo apt update
-# This was from the Ubuntu 22.04
-
-apt info clang-14
+  sudo add-apt-repository universe
 
 # This was from the Mobian 12
 DEBIAN_FRONTEND=noninteractive sudo apt -y install clang-14 liblldb-14 lld-14 build-essential git subversion \
