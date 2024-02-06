@@ -1,0 +1,14 @@
+on:
+  [push]
+name: ubu1804 - GNUstep stable
+jobs:
+  testbuild:
+    name: Building GNUstep
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the build script repository
+        uses: actions/checkout@master
+      - name: Execute test script
+        run: |
+          docker build -t gnustep-build-ci-ubu1804-stable ci-tests/ubu1804-stable/.
+          docker run gnustep-build-ci-ubu1804-stable

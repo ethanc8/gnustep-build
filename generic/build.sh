@@ -4,12 +4,12 @@
 set -x
 
 # Set version numbers
-# Possible values: TRUNK, STABLE, 2023_JAN, 2021_MAY, CUSTOM
-# If you specify CUSTOM, you must specify all other variables
+# Possible values: trunk, stable, 2023jan, 2021may, custom
+# If you specify custom, you must specify all other variables
 if [[ -n "$GNUSTEP_BUILD_VERSION" ]]; then
   VERSION="$GNUSTEP_BUILD_VERSION"
 else
-  VERSION="STABLE"
+  VERSION="stable"
 fi
 
 # Set to true to also build and install apps
@@ -33,7 +33,7 @@ else
   PROMPT=false
 fi
 
-if [[ $VERSION = "STABLE" ]]; then
+if [[ $VERSION = "stable" ]]; then
   LIBDISPATCH_VERSION=swift-5.9.2-RELEASE
   LIBOBJC2_VERSION=v2.2
   GSMAKE_VERSION=make-2_9_1
@@ -45,7 +45,7 @@ if [[ $VERSION = "STABLE" ]]; then
   GORM_VERSION=gorm-1_3_1
   GWORKSPACE_VERSION=master # 1.0.0 is pretty old
   SYSTEMPREFERENCES_VERSION=master
-elif [[ $VERSION = "2023_JAN" ]]; then
+elif [[ $VERSION = "2023jan" ]]; then
   LIBDISPATCH_VERSION=swift-5.7.1-RELEASE
   LIBOBJC2_VERSION=v2.1
   GSMAKE_VERSION=make-2_9_1
@@ -57,7 +57,7 @@ elif [[ $VERSION = "2023_JAN" ]]; then
   GORM_VERSION=gorm-1_3_1
   GWORKSPACE_VERSION=gworkspace-1_0_0 # Commit 0e5bca2
   SYSTEMPREFERENCES_VERSION=master
-elif [[ $VERSION = "2021_MAY" ]]; then
+elif [[ $VERSION = "2021may" ]]; then
   LIBDISPATCH_VERSION=swift-5.4.3-RELEASE # Bugfix for Swift 5.4.1
   LIBOBJC2_VERSION=v2.1
   GSMAKE_VERSION=make-2_9_1 # Bugfix for make-2_9_0
@@ -69,9 +69,9 @@ elif [[ $VERSION = "2021_MAY" ]]; then
   GORM_VERSION=gorm-1_2_28 # Commit f97cfac
   GWORKSPACE_VERSION=gworkspace-1_0_0 # 2021-Dec, only stable release in past 7 years
   SYSTEMPREFERENCES_VERSION=master
-elif [[ $VERSION = "CUSTOM" ]]; then
+elif [[ $VERSION = "custom" ]]; then
   :
-elif [[ $VERSION = "TRUNK" ]]; then
+elif [[ $VERSION = "trunk" ]]; then
   LIBDISPATCH_VERSION=swift-5.9.2-RELEASE
   LIBOBJC2_VERSION=master # v2.2 once the release is finished
   GSMAKE_VERSION=master

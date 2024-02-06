@@ -1,0 +1,14 @@
+on:
+  [push]
+name: ubudevel - GNUstep trunk
+jobs:
+  testbuild:
+    name: Building GNUstep
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the build script repository
+        uses: actions/checkout@master
+      - name: Execute test script
+        run: |
+          docker build -t gnustep-build-ci-ubudevel-trunk ci-tests/ubudevel-trunk/.
+          docker run gnustep-build-ci-ubudevel-trunk

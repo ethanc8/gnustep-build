@@ -45,7 +45,7 @@ generateForOS() {
     name=$1
     dockerTag=$2
 
-    versions=('2021_DEC' '2023_JAN' 'STABLE' 'TRUNK')
+    versions=('2021dec' '2023may' 'stable' 'trunk')
 
     for version in "${versions[@]}"; do
         generate "$name" "$dockerTag" "$version"

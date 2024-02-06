@@ -1,0 +1,14 @@
+on:
+  [push]
+name: ubu2204 - GNUstep 2023may
+jobs:
+  testbuild:
+    name: Building GNUstep
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the build script repository
+        uses: actions/checkout@master
+      - name: Execute test script
+        run: |
+          docker build -t gnustep-build-ci-ubu2204-2023may ci-tests/ubu2204-2023may/.
+          docker run gnustep-build-ci-ubu2204-2023may
