@@ -27,7 +27,11 @@ else
 fi
 
 # Set to true to pause after each build to verify successful build and installation
-PROMPT=false
+if [[ -z "$GNUSTEP_BUILD_PROMPT" ]]; then
+  PROMPT="$GNUSTEP_BUILD_PROMPT"
+else
+  PROMPT=false
+fi
 
 if [[ $VERSION = "STABLE" ]]; then
   LIBDISPATCH_VERSION=swift-5.9.2-RELEASE
