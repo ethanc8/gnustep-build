@@ -174,9 +174,26 @@ if $OS_IS_DEBIAN_DERIVATIVE; then
     OS_IS_UBUNTU_DERIVATIVE=false
   fi
 
-  # ADD NEW CODENAMES HERE
-  # Currently has Ubuntu 22.04~24.04 and Debian Jessie (15.04) to Trixie (25.??), plus Testing and Sid
-  if [[ "$DEBIAN_UBUNTU_CODENAME" =~ ^(jammy|kinetic|lunar|mantic|noble|bookworm|trixie|forky|sid)$ ]]; then
+  ## ADD NEW LLVM VERSIONS HERE
+  month="$(monthOfDebianUbuntuCodename "$DEBIAN_UBUNTU_CODENAME")"
+  if [[ "$month" -ge 2004 && "$month" -le 2210 || "$month" -eq 1903 || "$month" -eq 1702 ]]; then
+    HAS_CLANG_11_IN_REPO=true
+  else
+    HAS_CLANG_11_IN_REPO=false
+  fi
+  # Clang 12 was only available in Sid for a limited period.
+  if [[ $OS_IS_UBUNTU_DERIVATIVE && "$month" -ge 2104 && "$month" -le 2204 ]]; then
+    HAS_CLANG_12_IN_REPO=true
+  else
+    HAS_CLANG_12_IN_REPO=false
+  fi
+  # Note: Clang 13 is also in focal-proposed.
+  if [[ "$(monthOfDebianUbuntuCodename "$DEBIAN_UBUNTU_CODENAME")" -ge 2107 ]]; then
+    HAS_CLANG_13_IN_REPO=true
+  else
+    HAS_CLANG_13_IN_REPO=false
+  fi
+  if [[ "$(monthOfDebianUbuntuCodename "$DEBIAN_UBUNTU_CODENAME")" -ge 2204 ]]; then
     HAS_CLANG_14_IN_REPO=true
   else
     HAS_CLANG_14_IN_REPO=false
