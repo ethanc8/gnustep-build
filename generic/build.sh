@@ -158,19 +158,20 @@ if $OS_IS_DEBIAN_DERIVATIVE; then
     DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC sudo -E apt -y install tzdata
   fi
   DEBIAN_FRONTEND=noninteractive sudo -E apt -y install wget curl software-properties-common
-  if $HAS_CLANG_14_IN_REPO; then
-    :
-  else
-    wget https://apt.llvm.org/llvm.sh
-    chmod +x llvm.sh
-    sudo ./llvm.sh 14
-  fi
 
   sudo apt update
   if $OS_IS_UBUNTU_DERIVATIVE; then
     sudo add-apt-repository universe
     # Some LLVM packages depend on newer GCC toolchains
     sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+  fi
+
+  if $HAS_CLANG_14_IN_REPO; then
+    :
+  else
+    wget https://apt.llvm.org/llvm.sh
+    chmod +x llvm.sh
+    sudo ./llvm.sh 14
   fi
 
   DEBIAN_FRONTEND=noninteractive sudo -E apt -y install clang-14 liblldb-14 lld-14 build-essential git subversion \
