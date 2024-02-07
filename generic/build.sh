@@ -163,7 +163,7 @@ if $OS_IS_DEBIAN_DERIVATIVE; then
   else
     wget https://apt.llvm.org/llvm.sh
     chmod +x llvm.sh
-    sudo ./llvm.sh
+    sudo ./llvm.sh 14
   fi
 
   sudo apt update
