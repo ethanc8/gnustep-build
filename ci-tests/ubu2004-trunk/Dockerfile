@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM ubuntu:focal
 
 RUN uname -a
 RUN apt-get update && apt-get install -y clang build-essential wget git sudo
