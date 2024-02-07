@@ -67,6 +67,6 @@ generateForOS deb10 'debian:10'
 generateForOS ubudevel 'ubuntu:devel'
 # ADD NEW CODENAMES HERE
 generateForOS ubu2310 'ubuntu:mantic'
-generateForOS ubu2204 'ubuntu:focal'
-generateForOS ubu2004 'ubuntu:jammy'
+generateForOS ubu2204 'ubuntu:jammy'
+generateForOS ubu2004 'ubuntu:focal'
 generateForOS ubu1804 'ubuntu:bionic'
