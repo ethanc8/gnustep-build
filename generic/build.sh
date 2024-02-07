@@ -225,7 +225,7 @@ if $OS_IS_DEBIAN_DERIVATIVE; then
     sudo ./llvm.sh 14
   fi
 
-  DEBIAN_FRONTEND=noninteractive sudo -E apt -y install clang-14 liblldb-14 lld-14 build-essential git subversion \
+  DEBIAN_FRONTEND=noninteractive sudo -E apt -y install gobjc++ clang-14 liblldb-14 lld-14 build-essential git subversion \
   libc6 libc6-dev \
   libxml2 libxml2-dev \
   libffi-dev \
