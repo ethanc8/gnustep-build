@@ -172,7 +172,7 @@ if $OS_IS_DEBIAN_DERIVATIVE; then
   DEBIAN_FRONTEND=noninteractive sudo -E apt -y install clang-14 liblldb-14 lld-14 build-essential git subversion \
   libc6 libc6-dev \
   libxml2 libxml2-dev \
-  libffi8 libffi-dev \
+  libffi-dev \
   libicu-dev icu-devtools \
   libuuid1 uuid-dev uuid-runtime \
   libsctp1 libsctp-dev lksctp-tools \
