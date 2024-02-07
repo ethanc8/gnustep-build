@@ -109,14 +109,48 @@ else
   echo "WARNING: You are not on a Debian derivative!"
 fi
 
-debianPackageIsInstalled() {
-  pkg=$1
+debianPackageIsInstalled() { pkg=$1
   status="$(dpkg-query -W --showformat='${db:Status-Status}' "$pkg" 2>&1)"
   if [ ! $? = 0 ] || [ ! "$status" = installed ]; then
     return 1 # false
   else
     return 0 # true
   fi
+}
+
+# Allow comparing the Debian or Ubuntu releases
+monthOfDebianUbuntuCodename() { codename=$1
+  case "$codename" in
+    # Debian releases by full freeze
+    sid) echo 99999 ;;
+    forky) echo 2705 ;; # Assumed
+    trixie) echo 2505 ;; # Assumed
+    bookworm) echo 2305 ;;
+    bullseye) echo 2107 ;;
+    buster) echo 1903 ;;
+    stretch) echo 1702 ;;
+    jessie) echo 1411 ;;
+    # Ubuntu releases by release date
+    noble) echo 2404 ;;
+    mantic) echo 2310 ;;
+    lunar) echo 2304 ;;
+    kinetic) echo 2210 ;;
+    jammy) echo 2204 ;;
+    impish) echo 2110 ;;
+    hirsute) echo 2104 ;;
+    groovy) echo 2010 ;;
+    focal) echo 2004 ;;
+    eoan) echo 1910 ;;
+    disco) echo 1904 ;;
+    cosmic) echo 1810 ;;
+    bionic) echo 1804 ;;
+    artful) echo 1710 ;;
+    zesty) echo 1704 ;;
+    yakkety) echo 1610 ;;
+    xenial) echo 1604 ;;
+    # Assume any other release is new
+    *) echo 99999 ;;
+  esac
 }
 
 if $OS_IS_DEBIAN_DERIVATIVE; then
