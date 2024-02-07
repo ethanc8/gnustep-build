@@ -167,7 +167,11 @@ if $OS_IS_DEBIAN_DERIVATIVE; then
   fi
 
   sudo apt update
-  sudo add-apt-repository universe
+  if $OS_IS_UBUNTU_DERIVATIVE; then
+    sudo add-apt-repository universe
+    # Some LLVM packages depend on newer GCC toolchains
+    sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+  fi
 
   DEBIAN_FRONTEND=noninteractive sudo -E apt -y install clang-14 liblldb-14 lld-14 build-essential git subversion \
   libc6 libc6-dev \
