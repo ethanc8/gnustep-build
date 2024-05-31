@@ -1,6 +1,6 @@
 on:
   [push]
-name: ubu2310 - GNUstep stable
+name: debsid - GNUstep 2024may
 jobs:
   testbuild:
     name: Building GNUstep
@@ -10,5 +10,5 @@ jobs:
         uses: actions/checkout@master
       - name: Execute test script
         run: |
-          docker build -t gnustep-build-ci-ubu2310-stable ci-tests/ubu2310-stable/.
-          docker run gnustep-build-ci-ubu2310-stable
+          docker build -t gnustep-build-ci-debsid-2024may ci-tests/debsid-2024may/.
+          docker run gnustep-build-ci-debsid-2024may

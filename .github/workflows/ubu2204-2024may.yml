@@ -1,6 +1,6 @@
 on:
   [push]
-name: ubu2310 - GNUstep 2023jan
+name: ubu2204 - GNUstep 2024may
 jobs:
   testbuild:
     name: Building GNUstep
@@ -10,5 +10,5 @@ jobs:
         uses: actions/checkout@master
       - name: Execute test script
         run: |
-          docker build -t gnustep-build-ci-ubu2310-2023jan ci-tests/ubu2310-2023jan/.
-          docker run gnustep-build-ci-ubu2310-2023jan
+          docker build -t gnustep-build-ci-ubu2204-2024may ci-tests/ubu2204-2024may/.
+          docker run gnustep-build-ci-ubu2204-2024may

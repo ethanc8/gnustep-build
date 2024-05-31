@@ -45,7 +45,7 @@ generateForOS() {
     name=$1
     dockerTag=$2
 
-    versions=('2021may' '2023jan' 'stable' 'trunk')
+    versions=('2021may' '2023jan' '2024may' 'stable' 'trunk')
 
     printf "\n%s" "| $name |" >> README.md
 
@@ -66,7 +66,7 @@ generateForOS deb10 'debian:10'
 
 generateForOS ubudevel 'ubuntu:devel'
 # ADD NEW CODENAMES HERE
-generateForOS ubu2310 'ubuntu:mantic'
+generateForOS ubu2404 'ubuntu:noble'
 generateForOS ubu2204 'ubuntu:jammy'
 generateForOS ubu2004 'ubuntu:focal'
 generateForOS ubu1804 'ubuntu:bionic'
