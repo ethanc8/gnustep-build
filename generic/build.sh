@@ -34,16 +34,16 @@ else
 fi
 
 if [[ $VERSION = "stable" ]]; then
-  LIBDISPATCH_VERSION=swift-5.9.2-RELEASE
-  LIBOBJC2_VERSION=v2.2
-  GSMAKE_VERSION=make-2_9_1
-  GSBASE_VERSION=base-1_29_0
-  GSCOREBASE_VERSION=master
-  GSGUI_VERSION=gui-0_30_0
-  GSBACK_VERSION=back-0_30_0
-  PROJECTCENTER_VERSION=projectcenter-0_7_0
-  GORM_VERSION=gorm-1_3_1
-  GWORKSPACE_VERSION=master # 1.0.0 is pretty old
+  LIBDISPATCH_VERSION=swift-5.10-RELEASE
+  LIBOBJC2_VERSION=v2.2.1
+  GSMAKE_VERSION=make-2_9_2
+  GSBASE_VERSION=base-1_30_0
+  GSCOREBASE_VERSION=master # No releases
+  GSGUI_VERSION=gui-0_31_0
+  GSBACK_VERSION=back-0_31_0
+  PROJECTCENTER_VERSION=projectcenter-0_7_0 # 2023-Feb, only stable release in past 9 years
+  GORM_VERSION=gorm-1_4_0
+  GWORKSPACE_VERSION=master # v1.0.0 is pretty old
   SYSTEMPREFERENCES_VERSION=master
 elif [[ $VERSION = "2023jan" ]]; then
   LIBDISPATCH_VERSION=swift-5.7.1-RELEASE
@@ -68,6 +68,18 @@ elif [[ $VERSION = "2021may" ]]; then
   PROJECTCENTER_VERSION=projectcenter-0_7_0 # 2023-Feb, only stable release in past 9 years
   GORM_VERSION=gorm-1_2_28 # Commit f97cfac
   GWORKSPACE_VERSION=gworkspace-1_0_0 # 2021-Dec, only stable release in past 7 years
+  SYSTEMPREFERENCES_VERSION=master
+elif [[ $VERSION = "2024may" ]]; then
+  LIBDISPATCH_VERSION=swift-5.10-RELEASE
+  LIBOBJC2_VERSION=v2.2.1
+  GSMAKE_VERSION=make-2_9_2
+  GSBASE_VERSION=base-1_30_0
+  GSCOREBASE_VERSION=master # No releases
+  GSGUI_VERSION=gui-0_31_0
+  GSBACK_VERSION=back-0_31_0
+  PROJECTCENTER_VERSION=projectcenter-0_7_0 # 2023-Feb, only stable release in past 9 years
+  GORM_VERSION=gorm-1_4_0
+  GWORKSPACE_VERSION=master # v1.0.0 is pretty old
   SYSTEMPREFERENCES_VERSION=master
 elif [[ $VERSION = "custom" ]]; then
   :
